@@ -1,0 +1,43 @@
+{
+    "name": "tuupola/http-factory",
+    "description": "Lightweight autodiscovering PSR-17 HTTP factories",
+    "keywords": [
+        "psr-7",
+        "psr-17",
+        "http"
+    ],
+    "homepage": "https://github.com/tuupola/http-factory",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mika Tuupola",
+            "email": "tuupola@appelsiini.net",
+            "homepage": "http://www.appelsiini.net/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "http-interop/http-factory": "^0.3.0"
+    },
+    "require-dev": {
+        "overtrue/phplint": "^0.2.1",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tuupola\\Http\\Factory\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tuupola\\Http\\Factory\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "composer phplint && composer phpcs",
+        "phpcs": "vendor/bin/phpcs --standard=PSR2 --extensions=php --encoding=utf-8 --ignore=*/vendor/* . -p",
+        "phpunit": "vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --coverage-html ./report/",
+        "phplint": "vendor/bin/phplint . --exclude=vendor/",
+        "watch": "find . -name \"*.php\" -not -path \"./vendor/*\" -o -name \"*.json\" -not -path \"./vendor/*\"| entr -c composer test"
+    }
+}
