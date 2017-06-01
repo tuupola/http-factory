@@ -19,6 +19,7 @@ use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use Nyholm\Psr7\Request as NyholmRequest;
 use Slim\Http\Request as SlimRequest;
 use Slim\Http\Uri as SlimUri;
+use Slim\Http\Headers as SlimHeaders;
 use Zend\Diactoros\Request as DiactorosRequest;
 
 use Interop\Http\Factory\RequestFactoryInterface;
@@ -40,7 +41,9 @@ final class RequestFactory implements RequestFactoryInterface
 
         if (class_exists(SlimRequest::class)) {
             $uri = SlimUri::createFromString($uri);
-            return new SlimRequest($method, $uri);
+            $headers = new SlimHeaders;
+            $body = (new StreamFactory)->createStream("");
+            return new SlimRequest($method, $uri, $headers, [], [], $body);
         }
 
         if (class_exists(GuzzleRequest::class)) {
