@@ -17,7 +17,8 @@
         }
     ],
     "require": {
-        "http-interop/http-factory": "^0.3.0"
+        "http-interop/http-factory": "^0.3.0",
+        "phpunit/phpunit": "^5.7"
     },
     "require-dev": {
         "overtrue/phplint": "^0.2.1",
@@ -34,7 +35,8 @@
         }
     },
     "scripts": {
-        "test": "composer phplint && composer phpcs",
+        "test": "composer phplint && composer phpcs && composer phpunit",
+        "travis": "composer phplint && composer phpcs && composer phpunit",
         "phpcs": "vendor/bin/phpcs --standard=PSR2 --extensions=php --encoding=utf-8 --ignore=*/vendor/* . -p",
         "phpunit": "vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --coverage-html ./report/",
         "phplint": "vendor/bin/phplint . --exclude=vendor/",

@@ -8,16 +8,27 @@ php:
     - 7.1
     - hhvm
 
+env:
+    - PSR7_LIBRARY="zendframework/zend-diactoros"
+    - PSR7_LIBRARY="nyholm/psr7"
+    - PSR7_LIBRARY="slim/slim"
+    - PSR7_LIBRARY="guzzlehttp/psr7"
+
 matrix:
+    fast_finish: true
     allow_failures:
         - php: hhvm
+    exclude:
+        - php: 5.6
+          env: PSR7_LIBRARY="nyholm/psr7"
 
 before_script:
     - travis_retry composer self-update
+    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --dev $PSR7_LIBRARY; fi
     - travis_retry composer install --no-interaction
 
 script:
-    - composer test
+    - composer travis
 
 after_success:
     - if [[ $TRAVIS_PHP_VERSION != "hhvm" ]]; then bash <(curl -s https://codecov.io/bash); fi
