@@ -16,11 +16,25 @@
 namespace Tuupola\Http\Factory;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\StreamInterface;
 
 class StreamFactoryTest extends TestCase
 {
     public function testShouldBeTrue()
     {
         $this->assertTrue(true);
+    }
+
+    public function testShouldConstruct()
+    {
+        $stream = new StreamFactory;
+        $this->assertInstanceOf(StreamFactory::class, $stream);
+    }
+
+    public function testShouldCreateStream()
+    {
+        $stream = (new StreamFactory)->createStream("Hello world!");
+        $this->assertInstanceOf(StreamInterface::class, $stream);
+        $this->assertEquals("Hello world!", (string) $stream);
     }
 }
