@@ -16,7 +16,7 @@
 namespace Tuupola\Http\Factory;
 
 use GuzzleHttp\Psr7\Stream as GuzzleStream;
-use Nyholm\Psr7\Stream as NyholStream;
+use Nyholm\Psr7\Stream as NyholmStream;
 use Slim\Http\Stream as SlimStream;
 use Zend\Diactoros\Stream as DiactorosStream;
 
@@ -54,8 +54,8 @@ class StreamFactory implements StreamFactoryInterface
             return new DiactorosStream($resource);
         }
 
-        if (class_exists(NyholStream::class)) {
-            return new NyholStream($resource);
+        if (class_exists(NyholmStream::class)) {
+            return NyholmStream::createFromResource($resource);
         }
 
         if (class_exists(SlimStream::class)) {
