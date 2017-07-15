@@ -18,7 +18,7 @@ namespace Tuupola\Http\Factory;
 use GuzzleHttp\Psr7\Uri as GuzzleUri;
 use Nyholm\Psr7\Uri as NyholmUri;
 use Slim\Http\Uri as SlimUri;
-use Zend\Diactoros\Uri as ZendUri;
+use Zend\Diactoros\Uri as DiactorosUri;
 
 use Interop\Http\Factory\UriFactoryInterface;
 
