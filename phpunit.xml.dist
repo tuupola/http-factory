@@ -12,7 +12,7 @@
         <const name="RESPONSE_FACTORY" value="Tuupola\Http\Factory\ResponseFactory"/>
         <const name="SERVER_REQUEST_FACTORY" value="Tuupola\Http\Factory\ServerRequestFactory"/>
         <const name="STREAM_FACTORY" value="Tuupola\Http\Factory\StreamFactory"/>
-        <const name="X_UPLOADED_FILE_FACTORY" value="Acme\Factory\UploadedFileFactory"/>
+        <const name="UPLOADED_FILE_FACTORY" value="Tuupola\Http\Factory\UploadedFileFactory"/>
         <const name="URI_FACTORY" value="Tuupola\Http\Factory\UriFactory"/>
     </php>
     <filter>
