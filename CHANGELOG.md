@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 0.1.0 - unreleased
+## 0.2.0 - 2017-07-15
+### Added
+- Unit and integration tests for request, response and stream.
 
-Initial release with basic factories.
+## 0.1.1 - 2017-06-01
+### Fixed
+- Slim request factory was throwing errors.
+
+## 0.1.0 - 2017-05-30
+
+- Initial release with basic factories.
