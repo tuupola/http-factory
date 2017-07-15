@@ -17,13 +17,13 @@
         }
     ],
     "require": {
-        "http-interop/http-factory": "^0.3.0",
-        "phpunit/phpunit": "^5.7"
+        "http-interop/http-factory": "^0.3.0"
     },
     "require-dev": {
         "overtrue/phplint": "^0.2.1",
         "squizlabs/php_codesniffer": "^3.0",
-        "http-interop/http-factory-tests": "^0.3.0"
+        "http-interop/http-factory-tests": "^0.3.0",
+        "phpunit/phpunit": "^5.7"
     },
     "autoload": {
         "psr-4": {
