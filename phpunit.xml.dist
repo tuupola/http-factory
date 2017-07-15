@@ -11,7 +11,7 @@
         <const name="X_SERVER_REQUEST_FACTORY" value="Acme\Factory\ServerRequestFactory"/>
         <const name="STREAM_FACTORY" value="Tuupola\Http\Factory\StreamFactory"/>
         <const name="X_UPLOADED_FILE_FACTORY" value="Acme\Factory\UploadedFileFactory"/>
-        <const name="X_URI_FACTORY" value="Acme\Factory\UriFactory"/>
+        <const name="URI_FACTORY" value="Tuupola\Http\Factory\UriFactory"/>
     </php>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
