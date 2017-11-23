@@ -14,7 +14,38 @@ $ composer require tuupola/http-factory
 ```
 ## Usage
 
-Here be dragons.
+Let's assume you have Diactoros installed.
+
+```
+$ composer require zendframework/zend-diactoros
+```
+
+The factories will now automatically return Diactoros PSR-7 instances.
+
+```php
+use Tuupola\Http\Factory\RequestFactory;
+
+$request = (new RequestFactory)->createRequest("GET", "https://example.com/");
+print get_class($request); /* Zend\Diactoros\Request */
+```
+
+On the other hand if you have Slim frameworks installed.
+
+```
+$ composer remove zendframework/zend-diactoros
+$ composer require slim/slim
+```
+
+The factories will now return Slim PSR-7 instances.
+
+```php
+use Tuupola\Http\Factory\RequestFactory;
+
+$request = (new RequestFactory)->createRequest("GET", "https://example.com/");
+print get_class($request); /* Slim\Http\Request */
+```
+
+This library currently automatically detects and supports [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros), [slim/slim](https://github.com/slimphp/slim), [nyholm/psr7](https://github.com/Nyholm/psr7) and  [guzzle/psr7](https://github.com/guzzle/psr7) PSR-7 implementations.
 
 ## Testing
 
