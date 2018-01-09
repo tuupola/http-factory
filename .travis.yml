@@ -13,7 +13,9 @@ env:
     - PSR7_LIBRARY="zendframework/zend-diactoros"
     - PSR7_LIBRARY="nyholm/psr7"
     - PSR7_LIBRARY="slim/slim"
+    - PSR7_LIBRARY="slim/http"
     - PSR7_LIBRARY="guzzlehttp/psr7"
+
 
 matrix:
     fast_finish: true
