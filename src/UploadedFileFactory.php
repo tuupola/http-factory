@@ -20,7 +20,9 @@ use Nyholm\Psr7\UploadedFile as NyholmUploadedFile;
 use Slim\Http\UploadedFile as SlimUploadedFile;
 use Zend\Diactoros\UploadedFile as DiactorosUploadedFile;
 
-use Interop\Http\Factory\UploadedFileFactoryInterface;
+use Psr\Http\Message\UploadedFileFactoryInterface;
+use Psr\Http\Message\UploadedFileInterface;
+use Psr\Http\Message\StreamInterface;
 
 final class UploadedFileFactory implements UploadedFileFactoryInterface
 {
@@ -28,19 +30,14 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
      * {@inheritdoc}
      */
     public function createUploadedFile(
-        $file,
-        $size = null,
-        $error = \UPLOAD_ERR_OK,
-        $clientFilename = null,
-        $clientMediaType = null
-    ) {
+        StreamInterface $file,
+        ?int $size = null,
+        int $error = \UPLOAD_ERR_OK,
+        ?string $clientFilename = null,
+        ?string $clientMediaType = null
+    ): UploadedFileInterface {
         if ($size === null) {
-            if (is_string($file)) {
-                $size = filesize($file);
-            } else {
-                $stats = fstat($file);
-                $size = $stats['size'];
-            }
+            $size = $file->getSize();
         }
 
         if (class_exists(DiactorosUploadedFile::class)) {
@@ -67,6 +64,8 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
             if (is_resource($file)) {
                 $file = stream_get_meta_data($file)["uri"];
             }
+
+            print_r($file);
 
             return new SlimUploadedFile(
                 $file,
