@@ -30,19 +30,19 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
      * {@inheritdoc}
      */
     public function createUploadedFile(
-        StreamInterface $file,
+        StreamInterface $stream,
         ?int $size = null,
         int $error = \UPLOAD_ERR_OK,
         ?string $clientFilename = null,
         ?string $clientMediaType = null
     ): UploadedFileInterface {
         if ($size === null) {
-            $size = $file->getSize();
+            $size = $stream->getSize();
         }
 
         if (class_exists(DiactorosUploadedFile::class)) {
             return new DiactorosUploadedFile(
-                $file,
+                $stream,
                 $size,
                 $error,
                 $clientFilename,
@@ -52,7 +52,7 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
 
         if (class_exists(NyholmUploadedFile::class)) {
             return new NyholmUploadedFile(
-                $file,
+                $stream,
                 $size,
                 $error,
                 $clientFilename,
@@ -61,11 +61,13 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
         }
 
         if (class_exists(SlimUploadedFile::class)) {
-            if (is_resource($file)) {
-                $file = stream_get_meta_data($file)["uri"];
-            }
+            $meta = $stream->getMetadata();
+            $file = $meta["uri"];
 
-            print_r($file);
+            if ($file === "php://temp") {
+                $file = tempnam(sys_get_temp_dir(), "factory-test");
+                file_put_contents($file, (string) $stream);
+            }
 
             return new SlimUploadedFile(
                 $file,
