@@ -20,6 +20,7 @@
         "sort-packages": true
     },
     "require": {
+        "php": "^7.1",
         "http-interop/http-factory-tests": "^0.5.0",
         "psr/http-factory": "^1.0"
     },
