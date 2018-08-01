@@ -80,7 +80,7 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
 
         if (class_exists(GuzzleUploadedFile::class)) {
             return new GuzzleUploadedFile(
-                $file,
+                $stream,
                 $size,
                 $error,
                 $clientFilename,
