@@ -22,14 +22,15 @@ use Slim\Http\Uri as SlimUri;
 use Slim\Http\Headers as SlimHeaders;
 use Zend\Diactoros\Request as DiactorosRequest;
 
-use Interop\Http\Factory\RequestFactoryInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 final class RequestFactory implements RequestFactoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function createRequest($method, $uri)
+    public function createRequest(string $method, $uri): RequestInterface
     {
         if (class_exists(DiactorosRequest::class)) {
             return new DiactorosRequest($uri, $method);

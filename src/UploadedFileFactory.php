@@ -20,7 +20,9 @@ use Nyholm\Psr7\UploadedFile as NyholmUploadedFile;
 use Slim\Http\UploadedFile as SlimUploadedFile;
 use Zend\Diactoros\UploadedFile as DiactorosUploadedFile;
 
-use Interop\Http\Factory\UploadedFileFactoryInterface;
+use Psr\Http\Message\UploadedFileFactoryInterface;
+use Psr\Http\Message\UploadedFileInterface;
+use Psr\Http\Message\StreamInterface;
 
 final class UploadedFileFactory implements UploadedFileFactoryInterface
 {
@@ -28,24 +30,19 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
      * {@inheritdoc}
      */
     public function createUploadedFile(
-        $file,
-        $size = null,
-        $error = \UPLOAD_ERR_OK,
-        $clientFilename = null,
-        $clientMediaType = null
-    ) {
+        StreamInterface $stream,
+        ?int $size = null,
+        int $error = \UPLOAD_ERR_OK,
+        ?string $clientFilename = null,
+        ?string $clientMediaType = null
+    ): UploadedFileInterface {
         if ($size === null) {
-            if (is_string($file)) {
-                $size = filesize($file);
-            } else {
-                $stats = fstat($file);
-                $size = $stats['size'];
-            }
+            $size = $stream->getSize();
         }
 
         if (class_exists(DiactorosUploadedFile::class)) {
             return new DiactorosUploadedFile(
-                $file,
+                $stream,
                 $size,
                 $error,
                 $clientFilename,
@@ -55,7 +52,7 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
 
         if (class_exists(NyholmUploadedFile::class)) {
             return new NyholmUploadedFile(
-                $file,
+                $stream,
                 $size,
                 $error,
                 $clientFilename,
@@ -64,8 +61,12 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
         }
 
         if (class_exists(SlimUploadedFile::class)) {
-            if (is_resource($file)) {
-                $file = stream_get_meta_data($file)["uri"];
+            $meta = $stream->getMetadata();
+            $file = $meta["uri"];
+
+            if ($file === "php://temp") {
+                $file = tempnam(sys_get_temp_dir(), "factory-test");
+                file_put_contents($file, (string) $stream);
             }
 
             return new SlimUploadedFile(
@@ -79,7 +80,7 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
 
         if (class_exists(GuzzleUploadedFile::class)) {
             return new GuzzleUploadedFile(
-                $file,
+                $stream,
                 $size,
                 $error,
                 $clientFilename,

@@ -20,14 +20,15 @@ use Nyholm\Psr7\Stream as NyholmStream;
 use Slim\Http\Stream as SlimStream;
 use Zend\Diactoros\Stream as DiactorosStream;
 
-use Interop\Http\Factory\StreamFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
 
 class StreamFactory implements StreamFactoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function createStream($content = "")
+    public function createStream(string $content = ""): StreamInterface
     {
         $resource = fopen("php://temp", "r+");
         $stream = $this->createStreamFromResource($resource);
@@ -39,7 +40,7 @@ class StreamFactory implements StreamFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createStreamFromFile($filename, $mode = "r")
+    public function createStreamFromFile(string $filename, string $mode = "r"): StreamInterface
     {
         $resource = fopen($filename, $mode);
         return $this->createStreamFromResource($resource);
@@ -48,7 +49,7 @@ class StreamFactory implements StreamFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createStreamFromResource($resource)
+    public function createStreamFromResource($resource): StreamInterface
     {
         if (class_exists(DiactorosStream::class)) {
             return new DiactorosStream($resource);

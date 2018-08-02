@@ -2,15 +2,22 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 0.3.0 - 2017-07-16
+## [0.4.0](https://github.com/tuupola/http-factory/compare/0.3.0...0.4.0) - 2018-08-02
+### Added
+- Support for the stable version of PSR-17.
+
+### Changed
+- PHP 7.1 is now minimal requirement.
+
+## [0.3.0](https://github.com/tuupola/http-factory/compare/0.2.0...0.3.0) - 2017-07-16
 ### Added
 - Factories for URI, server request and uploaded file
 
-## 0.2.0 - 2017-07-15
+## [0.2.0](https://github.com/tuupola/http-factory/compare/0.1.1...0.2.0) - 2017-07-15
 ### Added
 - Unit and integration tests for request, response and stream.
 
-## 0.1.1 - 2017-06-01
+## [0.1.1](https://github.com/tuupola/http-factory/compare/0.1.0...0.1.1) - 2017-06-01
 ### Fixed
 - Slim request factory was throwing errors.
 

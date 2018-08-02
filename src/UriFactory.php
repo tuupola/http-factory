@@ -20,14 +20,15 @@ use Nyholm\Psr7\Uri as NyholmUri;
 use Slim\Http\Uri as SlimUri;
 use Zend\Diactoros\Uri as DiactorosUri;
 
-use Interop\Http\Factory\UriFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
+use Psr\Http\Message\UriInterface;
 
 final class UriFactory implements UriFactoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function createUri($uri = "")
+    public function createUri(string $uri = ""): UriInterface
     {
         if (class_exists(DiactorosUri::class)) {
             return new DiactorosUri($uri);

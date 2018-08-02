@@ -24,14 +24,15 @@ use Slim\Http\Environment as SlimEnvironment;
 use Zend\Diactoros\ServerRequest as DiactorosServerRequest;
 use Zend\Diactoros\ServerRequestFactory as DiactorosServerRequestFactory;
 
-use Interop\Http\Factory\ServerRequestFactoryInterface;
+use Psr\Http\Message\ServerRequestFactoryInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class ServerRequestFactory implements ServerRequestFactoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function createServerRequest($method, $uri)
+    public function createServerRequest(string $method, $uri, array $serverParams = []): ServerRequestInterface
     {
         if (class_exists(DiactorosServerRequest::class)) {
             return new DiactorosServerRequest([], [], $uri, $method);

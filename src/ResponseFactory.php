@@ -20,14 +20,15 @@ use Nyholm\Psr7\Response as NyholmResponse;
 use Slim\Http\Response as SlimResponse;
 use Zend\Diactoros\Response as DiactorosResponse;
 
-use Interop\Http\Factory\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseInterface;
 
 final class ResponseFactory implements ResponseFactoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function createResponse($code = 200)
+    public function createResponse(int $code = 200, string $reason = ""): ResponseInterface
     {
         if (class_exists(DiactorosResponse::class)) {
             return new DiactorosResponse("php://memory", $code);
