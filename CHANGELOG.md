@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## [0.4.1](https://github.com/tuupola/http-factory/compare/0.4.0...0.4.1) - 2018-08-09
+### Fixed
+- Moved http-interop/http-factory-tests as dev dependency ([#3](https://github.com/tuupola/http-factory/pull/3))
+
 ## [0.4.0](https://github.com/tuupola/http-factory/compare/0.3.0...0.4.0) - 2018-08-02
 ### Added
 - Support for the stable version of PSR-17.
