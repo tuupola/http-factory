@@ -16,7 +16,7 @@
 namespace Tuupola\Http\Factory;
 
 use GuzzleHttp\Psr7\ServerRequest as GuzzleServerRequest;
-use Nyholm\Psr7\Factory\ServerRequestFactory as NyholmServerRequestFactory;
+use Nyholm\Psr7\ServerRequest as NyholmServerRequest;
 use Slim\Http\Request as SlimServerRequest;
 use Slim\Http\Uri as SlimUri;
 use Slim\Http\Headers as SlimHeaders;
@@ -38,8 +38,8 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
             return new DiactorosServerRequest([], [], $uri, $method);
         }
 
-        if (class_exists(NyholmServerRequestFactory::class)) {
-            return (new NyholmServerRequestFactory)->createServerRequest($method, $uri);
+        if (class_exists(NyholmServerRequest::class)) {
+            return new NyholmServerRequest($method, $uri);
         }
 
         if (class_exists(SlimServerRequest::class)) {

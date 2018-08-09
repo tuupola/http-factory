@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## [0.4.2](https://github.com/tuupola/http-factory/compare/0.4.1...0.4.2) - 2018-08-09
+### Fixed
+- Compatibility issues with stable nyholm/psr7 ([#5](https://github.com/tuupola/http-factory/pull/5))
+
 ## [0.4.1](https://github.com/tuupola/http-factory/compare/0.4.0...0.4.1) - 2018-08-09
 ### Fixed
 - Moved http-interop/http-factory-tests as dev dependency ([#3](https://github.com/tuupola/http-factory/pull/3))
