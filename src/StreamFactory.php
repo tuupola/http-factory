@@ -56,7 +56,7 @@ class StreamFactory implements StreamFactoryInterface
         }
 
         if (class_exists(NyholmStream::class)) {
-            return NyholmStream::createFromResource($resource);
+            return NyholmStream::create($resource);
         }
 
         if (class_exists(SlimStream::class)) {
