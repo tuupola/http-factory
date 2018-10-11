@@ -55,46 +55,4 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
 
         throw new \RuntimeException("No PSR-7 implementation available");
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function createServerRequestFromArray(array $server)
-    {
-
-        if (class_exists(DiactorosServerRequest::class)) {
-            $normalized = DiactorosServerRequestFactory::normalizeServer($server);
-            $headers = DiactorosServerRequestFactory::marshalHeaders($server);
-            $uri = DiactorosServerRequestFactory::marshalUriFromServer($normalized, $headers);
-            $method = DiactorosServerRequestFactory::get("REQUEST_METHOD", $server, "GET");
-
-            return new DiactorosServerRequest($normalized, [], $uri, $method);
-        }
-
-        if (class_exists(NyholmServerRequestFactory::class)) {
-            return (new NyholmServerRequestFactory)->createServerRequestFromArray($server);
-        }
-
-        if (class_exists(SlimServerRequest::class)) {
-            $environment = new SlimEnvironment($server);
-            return SlimServerRequest::createFromEnvironment($environment);
-        }
-
-        if (class_exists(GuzzleServerRequest::class)) {
-            if (empty($server["REQUEST_METHOD"])) {
-                throw new \InvalidArgumentException("HTTP request method cannot be empty");
-            } else {
-                $method = $server["REQUEST_METHOD"];
-            }
-
-            $backup = $_SERVER;
-            $_SERVER = $server;
-            $uri = GuzzleServerRequest::getUriFromGlobals();
-            $_SERVER = $backup;
-
-            return new GuzzleServerRequest($method, $uri, [], null, "1.1", $server);
-        }
-
-        throw new \RuntimeException("No PSR-7 implementation available");
-    }
 }
