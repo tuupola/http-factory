@@ -2,17 +2,19 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## [1.0.0](https://github.com/tuupola/http-factory/compare/1.0.0...0.4.2) - unreleased
+## [1.0.0](https://github.com/tuupola/http-factory/compare/1.0.0...0.4.2) - 2018-10-12
+### Removed
+- `ServerRequestFactory::createServerRequestFromArray()` is not part of PSR-17 anymore.
 ### Added
-- Run unit tests also with zendframework/zend-diactoros:^2.0 ([#6](https://github.com/tuupola/http-factory/pull/6))
+- Run unit tests also with zendframework/zend-diactoros:^2.0 ([#6](https://github.com/tuupola/http-factory/pull/6)).
 
 ## [0.4.2](https://github.com/tuupola/http-factory/compare/0.4.1...0.4.2) - 2018-08-09
 ### Fixed
-- Compatibility issues with stable nyholm/psr7 ([#5](https://github.com/tuupola/http-factory/pull/5))
+- Compatibility issues with stable nyholm/psr7 ([#5](https://github.com/tuupola/http-factory/pull/5)).
 
 ## [0.4.1](https://github.com/tuupola/http-factory/compare/0.4.0...0.4.1) - 2018-08-09
 ### Fixed
-- Moved http-interop/http-factory-tests as dev dependency ([#3](https://github.com/tuupola/http-factory/pull/3))
+- Moved http-interop/http-factory-tests as dev dependency ([#3](https://github.com/tuupola/http-factory/pull/3)).
 
 ## [0.4.0](https://github.com/tuupola/http-factory/compare/0.3.0...0.4.0) - 2018-08-02
 ### Added
@@ -23,7 +25,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ## [0.3.0](https://github.com/tuupola/http-factory/compare/0.2.0...0.3.0) - 2017-07-16
 ### Added
-- Factories for URI, server request and uploaded file
+- Factories for URI, server request and uploaded file.
 
 ## [0.2.0](https://github.com/tuupola/http-factory/compare/0.1.1...0.2.0) - 2017-07-15
 ### Added
