@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## [1.0.0](https://github.com/tuupola/http-factory/compare/1.0.0...0.4.2) - 2018-10-12
+## [1.0.1](https://github.com/tuupola/http-factory/compare/1.0.0...1.0.1) - 2018-12-19
+### Added
+- Added missing provides clause for `psr/http-factory` to `composer.json`.
+
+## [1.0.0](https://github.com/tuupola/http-factory/compare/0.4.2...1.0.0) - 2018-10-12
 ### Removed
 - `ServerRequestFactory::createServerRequestFromArray()` is not part of PSR-17 anymore.
 ### Added
