@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## [1.0.2](https://github.com/tuupola/http-factory/compare/1.0.0...1.0.1) - 2018-12-22
+### Fixed
+- Corrected provides clause to `psr/http-factory-implementation` in `composer.json`.
+
 ## [1.0.1](https://github.com/tuupola/http-factory/compare/1.0.0...1.0.1) - 2018-12-19
 ### Added
 - Added missing provides clause for `psr/http-factory` to `composer.json`.
