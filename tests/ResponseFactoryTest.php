@@ -62,4 +62,11 @@ class ResponseFactoryTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $response);
         $this->assertEquals(404, $response->getStatusCode());
     }
+
+    public function testShouldSetReasonPhrase()
+    {
+        $response = (new ResponseFactory)->createResponse(200, "Bonkers!");
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals("Bonkers!", $response->getReasonPhrase());
+    }
 }
