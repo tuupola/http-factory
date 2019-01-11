@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## [1.0.2](https://github.com/tuupola/http-factory/compare/1.0.0...1.0.1) - 2018-12-22
+## [1.0.3](https://github.com/tuupola/http-factory/compare/1.0.2...1.0.3) - 2019-01-11
+### Fixed
+- `ServerRequestFactory::createServerRequest()` now honours passed in server params.
+- `ResponseFactory::createResponse()` now honours passed in reason phrase.
+
+### Added
+- All files now have `declare(strict_types=1)`.
+
+## [1.0.2](https://github.com/tuupola/http-factory/compare/1.0.1...1.0.2) - 2018-12-22
 ### Fixed
 - Corrected provides clause to `psr/http-factory-implementation` in `composer.json`.
 
