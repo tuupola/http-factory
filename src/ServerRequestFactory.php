@@ -51,22 +51,22 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
     public function createServerRequest(string $method, $uri, array $serverParams = []): ServerRequestInterface
     {
         if (class_exists(DiactorosServerRequest::class)) {
-            return new DiactorosServerRequest([], [], $uri, $method);
+            return new DiactorosServerRequest($serverParams, [], $uri, $method);
         }
 
         if (class_exists(NyholmServerRequest::class)) {
-            return new NyholmServerRequest($method, $uri);
+            return new NyholmServerRequest($method, $uri, [], null, "1.1", $serverParams);
         }
 
         if (class_exists(SlimServerRequest::class)) {
             $uri = SlimUri::createFromString($uri);
             $headers = new SlimHeaders;
             $body = (new StreamFactory)->createStream("");
-            return new SlimServerRequest($method, $uri, $headers, [], [], $body);
+            return new SlimServerRequest($method, $uri, $headers, [], $serverParams, $body);
         }
 
         if (class_exists(GuzzleServerRequest::class)) {
-            return new GuzzleServerRequest($method, $uri);
+            return new GuzzleServerRequest($method, $uri, [], null, "1.1", $serverParams);
         }
 
         throw new \RuntimeException("No PSR-7 implementation available");

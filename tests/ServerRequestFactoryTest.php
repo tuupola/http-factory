@@ -43,7 +43,17 @@ class ServerRequestFactoryTest extends TestCase
 
     public function testShouldConstruct()
     {
-        $request = new ServerRequestFactory;
-        $this->assertInstanceOf(ServerRequestFactory::class, $request);
+        $factory = new ServerRequestFactory;
+        $this->assertInstanceOf(ServerRequestFactory::class, $factory);
+    }
+
+    public function testShouldSetServerParams()
+    {
+        $request = (new ServerRequestFactory)->createServerRequest(
+            "GET",
+            "/",
+            ["foo" => "bar"]
+        );
+        $this->assertEquals(["foo" => "bar"], $request->getServerParams());
     }
 }
