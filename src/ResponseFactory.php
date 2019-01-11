@@ -47,19 +47,19 @@ final class ResponseFactory implements ResponseFactoryInterface
     public function createResponse(int $code = 200, string $reason = ""): ResponseInterface
     {
         if (class_exists(DiactorosResponse::class)) {
-            return new DiactorosResponse("php://memory", $code);
+            return (new DiactorosResponse)->withStatus($code, $reason);
         }
 
         if (class_exists(NyholmResponse::class)) {
-            return new NyholmResponse($code);
+            return new NyholmResponse($code, [], null, "1.1", $reason);
         }
 
         if (class_exists(SlimResponse::class)) {
-            return new SlimResponse($code);
+            return (new SlimResponse)->withStatus($code, $reason);
         }
 
         if (class_exists(GuzzleResponse::class)) {
-            return new GuzzleResponse($code);
+            return new GuzzleResponse($code, [], null, "1.1", $reason);
         }
 
         throw new \RuntimeException("No PSR-7 implementation available");
