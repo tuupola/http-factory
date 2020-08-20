@@ -7,9 +7,10 @@ env:
     - COMPOSER_ARGS="--no-interaction"
 
 php:
-    - nightly
-    env:
+    - php: nightly
+      env:
         - COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+
 env:
     - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
     - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
