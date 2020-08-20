@@ -3,7 +3,8 @@ sudo: false
 language: php
 
 php:
-    nightly
+    - 7.4
+    - nightly
 
 env:
     - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
@@ -20,8 +21,8 @@ matrix:
 
 before_script:
     - travis_retry composer self-update
-    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --no-interaction --ignore-platform-reqs --dev $PSR7_LIBRARY; fi
     - travis_retry composer install --no-interaction --ignore-platform-reqs
+    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --no-interaction --ignore-platform-reqs --dev $PSR7_LIBRARY; fi
 
 script:
     - make travis
