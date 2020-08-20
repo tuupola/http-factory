@@ -20,8 +20,8 @@ matrix:
 
 before_script:
     - travis_retry composer self-update
-    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --no-interaction --ignore-platform-req --dev $PSR7_LIBRARY; fi
     - travis_retry composer install --no-interaction --ignore-platform-req
+    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --dev $PSR7_LIBRARY; fi
 
 script:
     - make travis
