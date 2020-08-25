@@ -74,6 +74,10 @@ class StreamFactory implements StreamFactoryInterface
             );
         }
 
+        if (empty($filename)) {
+            throw new RuntimeException("Filename cannot be empty");
+        }
+
         if (class_exists(SlimPsr7StreamFactory::class)) {
             return (new SlimPsr7StreamFactory)->createStreamFromFile($filename, $mode);
         }
