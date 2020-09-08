@@ -7,15 +7,18 @@ php:
     - 7.2
     - 7.3
     - 7.4
-    - nightly
-
+    - php: nightly
+      env:
+        - COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
 env:
-    - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
-    - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
-    - PSR7_LIBRARY="nyholm/psr7"
-    - PSR7_LIBRARY="slim/psr7"
-    - PSR7_LIBRARY="slim/slim:^3.0"
-    - PSR7_LIBRARY="guzzlehttp/psr7"
+    global:
+        - COMPOSER_ARGS="--no-interaction"
+        - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
+        - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
+        - PSR7_LIBRARY="nyholm/psr7"
+        - PSR7_LIBRARY="slim/psr7"
+        - PSR7_LIBRARY="slim/slim:^3.0"
+        - PSR7_LIBRARY="guzzlehttp/psr7"
 
 matrix:
     fast_finish: true
@@ -24,8 +27,8 @@ matrix:
 
 before_script:
     - travis_retry composer self-update
-    - travis_retry composer install --no-interaction --ignore-platform-reqs
-    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --no-interaction --ignore-platform-reqs --dev $PSR7_LIBRARY; fi
+    - travis_retry composer install $COMPOSER_ARGS
+    - if [ "$PSR7_LIBRARY" != "" ]; then composer require $COMPOSER_ARGS --dev $PSR7_LIBRARY; fi
 
 script:
     - make travis

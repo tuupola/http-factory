@@ -13,7 +13,7 @@ help:
 	@echo ""
 
 vendor: $(wildcard composer.lock)
-	composer install --prefer-dist --no-interaction --ignore-platform-reqs
+	composer install --prefer-dist --no-interaction
 
 lint: vendor
 	vendor/bin/phplint . --exclude=vendor/
