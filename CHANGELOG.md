@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## [1.2.0](https://github.com/tuupola/http-factory/compare/1.1.0...1.2.0) - unreleased
+### Added
+- Allow installing with PHP 8 ([#13](https://github.com/tuupola/http-factory/pull/13)).
+
+
+### Fixed
+- Throw exception from `createStreamFromFile()` when filename is empty ([#13](https://github.com/tuupola/http-factory/pull/13/commits/e74f8ee352b92fbc21829307af1172eb7f5ab914)).
+
 ## [1.1.0](https://github.com/tuupola/http-factory/compare/1.0.3...1.1.0) - 2019-08-07
 ### Added
 - Support for slim/psr7 ([#10](https://github.com/tuupola/http-factory/pull/10)).
