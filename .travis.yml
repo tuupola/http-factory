@@ -11,6 +11,7 @@ php:
 env:
     global:
         - COMPOSER_ARGS="--no-interaction"
+    jobs:
         - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
         - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
         - PSR7_LIBRARY="nyholm/psr7"
@@ -18,7 +19,7 @@ env:
         - PSR7_LIBRARY="slim/slim:^3.0"
         - PSR7_LIBRARY="guzzlehttp/psr7"
 
-matrix:
+jobs:
     fast_finish: true
     include:
     - php: nightly
