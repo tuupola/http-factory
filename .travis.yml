@@ -7,9 +7,7 @@ php:
     - 7.2
     - 7.3
     - 7.4
-    - php: nightly
-      env:
-        - COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+
 env:
     global:
         - COMPOSER_ARGS="--no-interaction"
@@ -22,6 +20,9 @@ env:
 
 matrix:
     fast_finish: true
+    include:
+    - php: nightly
+      env: COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
     allow_failures:
         - php: nightly
 
