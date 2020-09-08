@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## [1.2.0](https://github.com/tuupola/http-factory/compare/1.1.0...1.2.0) - unreleased
+## [1.2.0](https://github.com/tuupola/http-factory/compare/1.1.0...1.2.0) - 20200908
 ### Added
 - Allow installing with PHP 8 ([#13](https://github.com/tuupola/http-factory/pull/13)).
 
