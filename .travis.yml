@@ -6,26 +6,41 @@ php:
     - 7.1
     - 7.2
     - 7.3
-    - 7.4snapshot
-    - nightly
+    - 7.4
 
 env:
-    - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
-    - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
-    - PSR7_LIBRARY="nyholm/psr7"
-    - PSR7_LIBRARY="slim/psr7"
-    - PSR7_LIBRARY="slim/slim:^3.0"
-    - PSR7_LIBRARY="guzzlehttp/psr7"
+    global:
+        - COMPOSER_ARGS="--no-interaction"
+    jobs:
+        - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
+        - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
+        - PSR7_LIBRARY="nyholm/psr7"
+        - PSR7_LIBRARY="slim/psr7"
+        - PSR7_LIBRARY="slim/slim:^3.0"
+        - PSR7_LIBRARY="guzzlehttp/psr7"
 
-matrix:
+jobs:
     fast_finish: true
+    include:
+    - php: nightly
+      env: PSR7_LIBRARY="zendframework/zend-diactoros:^1.0" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+    - php: nightly
+      env: PSR7_LIBRARY="zendframework/zend-diactoros:^2.0" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+    - php: nightly
+      env: PSR7_LIBRARY="nyholm/psr7" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+    - php: nightly
+      env: PSR7_LIBRARY="slim/psr7" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+    - php: nightly
+      env: PSR7_LIBRARY="slim/slim:^3.0" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
+    - php: nightly
+      env: PSR7_LIBRARY="guzzlehttp/psr7" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
     allow_failures:
         - php: nightly
 
 before_script:
     - travis_retry composer self-update
-    - if [ "$PSR7_LIBRARY" != "" ]; then composer require --dev $PSR7_LIBRARY; fi
-    - travis_retry composer install --no-interaction
+    - travis_retry composer install $COMPOSER_ARGS
+    - if [ "$PSR7_LIBRARY" != "" ]; then composer require $COMPOSER_ARGS --dev $PSR7_LIBRARY; fi
 
 script:
     - make travis
