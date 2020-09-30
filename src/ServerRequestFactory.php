@@ -39,7 +39,8 @@ use Slim\Http\Request as SlimServerRequest;
 use Slim\Http\Uri as SlimUri;
 use Slim\Http\Headers as SlimHeaders;
 use Slim\Psr7\Factory\ServerRequestFactory as SlimPsr7ServerRequestFactory;
-use Zend\Diactoros\ServerRequest as DiactorosServerRequest;
+use Zend\Diactoros\ServerRequest as ZendDiactorosServerRequest;
+use Laminas\Diactoros\ServerRequest as LaminasDiactorosServerRequest;
 
 use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -51,8 +52,8 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
      */
     public function createServerRequest(string $method, $uri, array $serverParams = []): ServerRequestInterface
     {
-        if (class_exists(DiactorosServerRequest::class)) {
-            return new DiactorosServerRequest($serverParams, [], $uri, $method);
+        if (class_exists(LaminasDiactorosServerRequest::class)) {
+            return new LaminasDiactorosServerRequest($serverParams, [], $uri, $method);
         }
 
         if (class_exists(NyholmServerRequest::class)) {
@@ -72,6 +73,10 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
 
         if (class_exists(GuzzleServerRequest::class)) {
             return new GuzzleServerRequest($method, $uri, [], null, "1.1", $serverParams);
+        }
+
+        if (class_exists(ZendDiactorosServerRequest::class)) {
+            return new ZendDiactorosServerRequest($serverParams, [], $uri, $method);
         }
 
         throw new \RuntimeException("No PSR-7 implementation available");
