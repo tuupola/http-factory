@@ -45,7 +45,7 @@ $request = (new RequestFactory)->createRequest("GET", "https://example.com/");
 print get_class($request); /* Slim\Http\Request */
 ```
 
-This library currently automatically detects and supports [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros), [slim/slim](https://github.com/slimphp/slim), [slim/psr7](https://github.com/slimphp/Slim-Psr7), [nyholm/psr7](https://github.com/Nyholm/psr7) and  [guzzle/psr7](https://github.com/guzzle/psr7) PSR-7 implementations.
+This library currently automatically detects and supports [laminas/laminas-diactoros](https://github.com/laminas/laminas-diactoros), [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros), [slim/slim](https://github.com/slimphp/slim), [slim/psr7](https://github.com/slimphp/Slim-Psr7), [nyholm/psr7](https://github.com/Nyholm/psr7) and  [guzzle/psr7](https://github.com/guzzle/psr7) PSR-7 implementations.
 
 ## Testing
 
