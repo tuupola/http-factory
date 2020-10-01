@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## [1.3.0](https://github.com/tuupola/http-factory/compare/1.2.0...master) - unreleased
+## [1.3.0](https://github.com/tuupola/http-factory/compare/1.2.0...1.3.0) - 2020-10-01
 ### Added
 - Support for `laminas/laminas-diactoros` ([#17](https://github.com/tuupola/http-factory/pull/17)).
 
