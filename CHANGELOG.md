@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## [1.3.0](https://github.com/tuupola/http-factory/compare/1.2.0...master) - unreleased
+### Added
+- Support for `laminas/laminas-diactoros` ([#17](https://github.com/tuupola/http-factory/pull/17)).
+
 ## [1.2.0](https://github.com/tuupola/http-factory/compare/1.1.0...1.2.0) - 2020-09-08
 ### Added
 - Allow installing with PHP 8 ([#13](https://github.com/tuupola/http-factory/pull/13)).

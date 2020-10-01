@@ -12,6 +12,7 @@ env:
     global:
         - COMPOSER_ARGS="--no-interaction"
     jobs:
+        - PSR7_LIBRARY="laminas/laminas-diactoros"
         - PSR7_LIBRARY="zendframework/zend-diactoros:^1.0"
         - PSR7_LIBRARY="zendframework/zend-diactoros:^2.0"
         - PSR7_LIBRARY="nyholm/psr7"
@@ -22,6 +23,8 @@ env:
 jobs:
     fast_finish: true
     include:
+    - php: nightly
+      env: PSR7_LIBRARY="laminas/laminas-diactoros" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
     - php: nightly
       env: PSR7_LIBRARY="zendframework/zend-diactoros:^1.0" COMPOSER_ARGS="--no-interaction --ignore-platform-reqs"
     - php: nightly

@@ -37,7 +37,8 @@ use GuzzleHttp\Psr7\Stream as GuzzleStream;
 use Nyholm\Psr7\Stream as NyholmStream;
 use Slim\Http\Stream as SlimStream;
 use Slim\Psr7\Factory\StreamFactory as SlimPsr7StreamFactory;
-use Zend\Diactoros\Stream as DiactorosStream;
+use Zend\Diactoros\Stream as ZendDiactorosStream;
+use Laminas\Diactoros\Stream as LaminasDiactorosStream;
 
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\StreamInterface;
@@ -97,8 +98,8 @@ class StreamFactory implements StreamFactoryInterface
      */
     public function createStreamFromResource($resource): StreamInterface
     {
-        if (class_exists(DiactorosStream::class)) {
-            return new DiactorosStream($resource);
+        if (class_exists(LaminasDiactorosStream::class)) {
+            return new LaminasDiactorosStream($resource);
         }
 
         if (class_exists(NyholmStream::class)) {
@@ -115,6 +116,10 @@ class StreamFactory implements StreamFactoryInterface
 
         if (class_exists(GuzzleStream::class)) {
             return new GuzzleStream($resource);
+        }
+
+        if (class_exists(ZendDiactorosStream::class)) {
+            return new ZendDiactorosStream($resource);
         }
 
         throw new RuntimeException("No PSR-7 implementation available");
