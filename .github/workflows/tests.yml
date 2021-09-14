@@ -5,7 +5,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["7.1", "7.2", "7.3", "7.4", "8.0"]
+        php-version: ["7.1", "7.2", "7.3", "7.4", "8.0"]
         psr7: [
           "laminas/laminas-diactoros",
           # "zendframework/zend-diactoros:^1.0",
@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php-version }}
           extensions: gmp
           coverage: xdebug
           #coverage: pcov
