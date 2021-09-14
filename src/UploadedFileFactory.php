@@ -90,6 +90,16 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
             );
         }
 
+        if (class_exists(ZendDiactorosUploadedFile::class)) {
+            return new ZendDiactorosUploadedFile(
+                $stream,
+                $size,
+                $error,
+                $clientFilename,
+                $clientMediaType
+            );
+        }
+
         if (class_exists(SlimUploadedFile::class)) {
             $meta = $stream->getMetadata();
             $file = $meta["uri"];
@@ -110,16 +120,6 @@ final class UploadedFileFactory implements UploadedFileFactoryInterface
 
         if (class_exists(GuzzleUploadedFile::class)) {
             return new GuzzleUploadedFile(
-                $stream,
-                $size,
-                $error,
-                $clientFilename,
-                $clientMediaType
-            );
-        }
-
-        if (class_exists(ZendDiactorosUploadedFile::class)) {
-            return new ZendDiactorosUploadedFile(
                 $stream,
                 $size,
                 $error,

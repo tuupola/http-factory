@@ -62,6 +62,10 @@ final class UriFactory implements UriFactoryInterface
             return (new SlimPsr7UriFactory)->createUri($uri);
         }
 
+        if (class_exists(ZendDiactorosUri::class)) {
+            return new ZendDiactorosUri($uri);
+        }
+
         if (class_exists(SlimUri::class)) {
             if (false === parse_url($uri)) {
                 throw new \InvalidArgumentException("Invalid URI: $uri");
@@ -71,10 +75,6 @@ final class UriFactory implements UriFactoryInterface
 
         if (class_exists(GuzzleUri::class)) {
             return new GuzzleUri($uri);
-        }
-
-        if (class_exists(ZendDiactorosUri::class)) {
-            return new ZendDiactorosUri($uri);
         }
 
         throw new \RuntimeException("No PSR-7 implementation available");
