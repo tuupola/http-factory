@@ -28,7 +28,9 @@ jobs:
           #key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: |
+          composer require --no-progress nyholm/psr7
+          composer install --no-progress --prefer-dist --optimize-autoloader
       - name: Run linter
         run: make lint
       - name: Run unit tests
