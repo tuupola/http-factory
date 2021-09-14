@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
 
-## [1.4.0](https://github.com/tuupola/http-factory/compare/1.3.0...1.4.0) - unreleased
+## [1.4.0](https://github.com/tuupola/http-factory/compare/1.3.0...1.4.0) - 2021-09-14
 ### Changed
 - Zend Diactoros is now detected before Slim. This is to avoid class not found errors in  projects using Slim 2 and legacy Diactoros. ([#21](https://github.com/tuupola/http-factory/pull/21)).
 
