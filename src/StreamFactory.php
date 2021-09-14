@@ -110,16 +110,16 @@ class StreamFactory implements StreamFactoryInterface
             return (new SlimPsr7StreamFactory)->createStreamFromResource($resource);
         }
 
+        if (class_exists(ZendDiactorosStream::class)) {
+            return new ZendDiactorosStream($resource);
+        }
+
         if (class_exists(SlimStream::class)) {
             return new SlimStream($resource);
         }
 
         if (class_exists(GuzzleStream::class)) {
             return new GuzzleStream($resource);
-        }
-
-        if (class_exists(ZendDiactorosStream::class)) {
-            return new ZendDiactorosStream($resource);
         }
 
         throw new RuntimeException("No PSR-7 implementation available");

@@ -62,16 +62,16 @@ final class ResponseFactory implements ResponseFactoryInterface
             return (new SlimPsr7ResponseFactory)->createResponse($code, $reason);
         }
 
+        if (class_exists(ZendDiactorosResponse::class)) {
+            return (new ZendDiactorosResponse)->withStatus($code, $reason);
+        }
+
         if (class_exists(SlimResponse::class)) {
             return (new SlimResponse)->withStatus($code, $reason);
         }
 
         if (class_exists(GuzzleResponse::class)) {
             return new GuzzleResponse($code, [], null, "1.1", $reason);
-        }
-
-        if (class_exists(ZendDiactorosResponse::class)) {
-            return (new ZendDiactorosResponse)->withStatus($code, $reason);
         }
 
         throw new \RuntimeException("No PSR-7 implementation available");

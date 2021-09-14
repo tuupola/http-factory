@@ -64,6 +64,10 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
             return (new SlimPsr7ServerRequestFactory)->createServerRequest($method, $uri, $serverParams);
         }
 
+        if (class_exists(ZendDiactorosServerRequest::class)) {
+            return new ZendDiactorosServerRequest($serverParams, [], $uri, $method);
+        }
+
         if (class_exists(SlimServerRequest::class)) {
             $uri = SlimUri::createFromString($uri);
             $headers = new SlimHeaders;
@@ -73,10 +77,6 @@ final class ServerRequestFactory implements ServerRequestFactoryInterface
 
         if (class_exists(GuzzleServerRequest::class)) {
             return new GuzzleServerRequest($method, $uri, [], null, "1.1", $serverParams);
-        }
-
-        if (class_exists(ZendDiactorosServerRequest::class)) {
-            return new ZendDiactorosServerRequest($serverParams, [], $uri, $method);
         }
 
         throw new \RuntimeException("No PSR-7 implementation available");
