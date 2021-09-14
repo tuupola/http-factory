@@ -8,12 +8,12 @@ jobs:
         php-versions: ["7.1", "7.2", "7.3", "7.4", "8.0"]
         psr7: [
           "laminas/laminas-diactoros",
-          "zendframework/zend-diactoros:^1.0",
-          "zendframework/zend-diactoros:^2.0",
-          "nyholm/psr7",
-          "slim/psr7",
-          "slim/slim:^3.0",
-          "guzzlehttp/psr7",
+          # "zendframework/zend-diactoros:^1.0",
+          # "zendframework/zend-diactoros:^2.0",
+          # "nyholm/psr7",
+          # "slim/psr7",
+          # "slim/slim:^3.0",
+          # "guzzlehttp/psr7"
         ]
     runs-on: ${{ matrix.operating-system }}
     steps:
