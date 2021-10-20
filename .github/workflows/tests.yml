@@ -19,7 +19,7 @@ jobs:
           - psr7: "zendframework/zend-diactoros:^2.0"
             php-version: 8.0
           - psr7: "zendframework/zend-diactoros:^2.0"
-            php-version: 8.0
+            php-version: 8.1
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Checkout code
