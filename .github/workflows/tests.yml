@@ -3,11 +3,12 @@ on: [push, pull_request]
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-version: ["7.1", "7.2", "7.3", "7.4", "8.0", "8.1"]
+        php-version: ["7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2", "8.3", "8.4", "8.5"]
         psr7: [
-          "laminas/laminas-diactoros",
+          "laminas/laminas-diactoros:^3.0",
           "zendframework/zend-diactoros:^1.0",
           "zendframework/zend-diactoros:^2.0",
           "nyholm/psr7",
@@ -16,10 +17,38 @@ jobs:
           "guzzlehttp/psr7"
         ]
         exclude:
+          - psr7: "laminas/laminas-diactoros:^3.0"
+            php-version: 7.1
+          - psr7: "laminas/laminas-diactoros:^3.0"
+            php-version: 7.2
+          - psr7: "laminas/laminas-diactoros:^3.0"
+            php-version: 7.3
+          - psr7: "laminas/laminas-diactoros:^3.0"
+            php-version: 7.4
+          - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.0
+          - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.1
+          - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.2
+          - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.3
+          - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.4
+          - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.5
           - psr7: "zendframework/zend-diactoros:^2.0"
             php-version: 8.0
           - psr7: "zendframework/zend-diactoros:^2.0"
             php-version: 8.1
+          - psr7: "zendframework/zend-diactoros:^2.0"
+            php-version: 8.2
+          - psr7: "zendframework/zend-diactoros:^2.0"
+            php-version: 8.3
+          - psr7: "zendframework/zend-diactoros:^2.0"
+            php-version: 8.4
+          - psr7: "zendframework/zend-diactoros:^2.0"
+            php-version: 8.5
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Checkout code
@@ -35,7 +64,7 @@ jobs:
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
