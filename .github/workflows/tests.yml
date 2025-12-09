@@ -26,6 +26,8 @@ jobs:
           - psr7: "laminas/laminas-diactoros:^3.0"
             php-version: 7.4
           - psr7: "zendframework/zend-diactoros:^1.0"
+            php-version: 8.0
+          - psr7: "zendframework/zend-diactoros:^1.0"
             php-version: 8.1
           - psr7: "zendframework/zend-diactoros:^1.0"
             php-version: 8.2
